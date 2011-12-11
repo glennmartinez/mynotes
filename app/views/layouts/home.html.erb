@@ -6,25 +6,35 @@
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
 </head>
 <body>
-<h1> My Notes </h1>
+
+<div id="container">
+     
+     
+</div>
+
+
+
+<script type="text/template" id="library-template">
+  <h1> My Notes List </h1>
+  <ul class="mynotes"></ul>
+
+</script>
+
 
 <script type="text/template" id="mynote-template">
-  <div class="todo {{ done ? 'done' : '' }}">
-    <div class="display">
-      <input class="check" type="checkbox" {{ done ? 'checked="checked"' : '' }} />
-      <div class="todo-content"></div>
-      <div class="todo-body"></div>
-      
-      <span class="todo-destroy"></span>
-    </div>
-    <div class="edit">
-      <input class="todo-input" type="text" value="" />
-      
-      <input class="todo-input2" type="text" value="" />
-    </div>
-  </div>
+  <div class="mynote-title"> </div>
+    <div class="mynote-content"</div>
 </script>
+
+<script type="application/javascript">
+      jQuery(function() {
+          window.library.fetch();
+      });
+  
+</script>
+
 </body>
 </html>

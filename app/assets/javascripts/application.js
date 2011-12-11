@@ -6,8 +6,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
-//= require backbone
-//= require jquery-1.5.1.min
+//= require json2
 //= require underscore
+//= require backbone
+//= require modernizr-1.6.min
 //= require mynotes
