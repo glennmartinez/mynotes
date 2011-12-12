@@ -51,11 +51,20 @@ $(function() {
     window.LibraryView = Backbone.View.extend({
                 tagName: 'section',
                 className: 'mynotes',
+                
+                
+                events: {
+                    "keypress #new-title":  "createOnEnter",                    
+                    "keypress #new-content":  "createOnEnter"
+                    
+                },
            
                      
                initialize: function() {
                       _.bindAll(this, 'render');
                       this.template = _.template($('#library-template').html());
+                      this.input = this.$("#new-title");
+                      this.input2 = this.$("#new-content");
                       this.collection.bind('reset', this.render);
                },
                
@@ -74,8 +83,34 @@ $(function() {
                             
                         });
                         return this;
-               }
-        
+               },
+               
+                createOnEnter: function(e) {
+                    var self = this;
+                    var input = this.$("#new-title");
+                    var input2 = this.$("#new-content");
+                    //var msg = this.model.isNew() ? 'Successfully created!' : "Saved!";
+                     if (!input || e.keyCode != 13) return;
+                    // this.model.save({title: this.$("#new-title").val(), content: this.$("#new-content").val() }, {
+                      this.model.save({title: "bigballs", content: "big nuts beeaatch"}, {
+                            success: function(model, resp) {
+                                new LibraryView.Notice({message: msg});
+                                
+                                self.model = model;
+                                self.render();
+                                self.delegateEvents();
+                                
+                                Backbone.history.saveLocation('mynotes/' + model.id);
+                            },
+                            error: function() {
+                                new LibraryView.error();
+                            }
+                      
+                });
+                    
+                    return false;
+                
+            },
     });
     
     window.MyApp = Backbone.Router.extend({

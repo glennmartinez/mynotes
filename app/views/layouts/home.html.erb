@@ -11,7 +11,7 @@
 <body>
 
 <div id="container">
-     
+   
      
 </div>
 
@@ -19,14 +19,20 @@
 
 <script type="text/template" id="library-template">
   <h1> My Notes List </h1>
+      <div id="create-mynote">
+          <input id="new-title" placeholder="Enter Title" type="text" />
+           <input id="new-content" placeholder="Enter Content?" type="text" />
+          <span class="ui-tooltip-top" style="display:none;">Press Enter to save this task</span>
+        </div>
   <ul class="mynotes"></ul>
+  
 
 </script>
 
 
 <script type="text/template" id="mynote-template">
-  <div class="mynote-title"> </div>
-    <div class="mynote-content"</div>
+  <div class="mynote-title">{{title}} </div>
+    <div class="mynote-content">{{content}}</div>
 </script>
 
 <script type="application/javascript">
