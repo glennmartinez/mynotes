@@ -63,9 +63,8 @@ $(function() {
                initialize: function() {
                       _.bindAll(this, 'render');
                       this.template = _.template($('#library-template').html());
-                      this.input = this.$("#new-title");
-                      this.input2 = this.$("#new-content");
                       this.collection.bind('reset', this.render);
+                      this.collection.bind('add', this.render);
                },
                
                render: function() {
@@ -92,25 +91,18 @@ $(function() {
                     //var msg = this.model.isNew() ? 'Successfully created!' : "Saved!";
                      if (!input || e.keyCode != 13) return;
                     // this.model.save({title: this.$("#new-title").val(), content: this.$("#new-content").val() }, {
-                      this.model.save({title: "bigballs", content: "big nuts beeaatch"}, {
-                            success: function(model, resp) {
-                                new LibraryView.Notice({message: msg});
-                                
-                                self.model = model;
-                                self.render();
-                                self.delegateEvents();
-                                
-                                Backbone.history.saveLocation('mynotes/' + model.id);
-                            },
-                            error: function() {
-                                new LibraryView.error();
-                            }
-                      
-                });
+                    var newNote = new Mynote({title: this.$("#new-title").val(), content: this.$("#new-content").val()});
+                    this.collection.create(newNote);
+                                                                                                 
+                                                                                                 
                     
-                    return false;
+                      
+                    
+            
+                    
+                    
                 
-            },
+                }
     });
     
     window.MyApp = Backbone.Router.extend({
